@@ -60,6 +60,8 @@ macro_rules! bench_header(
 
 macro_rules! deref(
     ($from:ty -> $to:ty) => {
+        use std::ops::{Deref, DerefMute};
+
         impl Deref<$to> for $from {
             fn deref<'a>(&'a self) -> &'a $to {
                 &self.0
