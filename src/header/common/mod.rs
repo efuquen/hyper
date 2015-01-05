@@ -29,7 +29,7 @@ pub use self::vary::Vary;
 pub use self::server::Server;
 pub use self::set_cookie::SetCookie;
 
-use std::ops::{Deref, DerefMute};
+use std::ops::{Deref, DerefMut};
 
 macro_rules! bench_header(
     ($name:ident, $ty:ty, $value:expr) => {
