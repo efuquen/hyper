@@ -332,7 +332,7 @@ impl<'a> fmt::Show for HeaderView<'a> {
 }
 
 impl<'a> Extend<HeaderView<'a>> for Headers {
-    fn extend<I: Iterator<HeaderView<'a>>>(&mut self, mut iter: I) {
+    fn extend<I: Iterator>(&mut self, mut iter: I) {
         for header in iter {
             self.data.insert((*header.0).clone(), (*header.1).clone());
         }
@@ -340,7 +340,7 @@ impl<'a> Extend<HeaderView<'a>> for Headers {
 }
 
 impl<'a> FromIterator<HeaderView<'a>> for Headers {
-    fn from_iter<I: Iterator<HeaderView<'a>>>(iter: I) -> Headers {
+    fn from_iter<I: Iterator>(iter: I) -> Headers {
         let mut headers = Headers::new();
         headers.extend(iter);
         headers
