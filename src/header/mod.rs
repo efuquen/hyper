@@ -7,12 +7,14 @@
 use std::any::Any;
 use std::ascii::AsciiExt;
 use std::borrow::Cow::{Borrowed, Owned};
+use std::borrow::IntoCow;
 use std::fmt::{mod, Show};
 use std::intrinsics::TypeId;
 use std::raw::TraitObject;
 use std::str::{SendStr, FromStr};
 use std::collections::HashMap;
 use std::collections::hash_map::{Iter, Entry};
+use std::iter::FromIterator;
 use std::{hash, mem};
 
 use mucell::MuCell;

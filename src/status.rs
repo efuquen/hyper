@@ -1,6 +1,8 @@
 //! Status Codes
 use std::fmt;
 use std::mem::transmute;
+use std::num::{ToPrimitive, FromPrimitive};
+use std::cmp::Ordering;
 
 // shamelessly lifted from Teepee. I tried a few schemes, this really
 // does seem like the best.

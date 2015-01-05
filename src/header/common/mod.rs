@@ -29,8 +29,6 @@ pub use self::vary::Vary;
 pub use self::server::Server;
 pub use self::set_cookie::SetCookie;
 
-use std::ops::{Deref, DerefMut};
-
 macro_rules! bench_header(
     ($name:ident, $ty:ty, $value:expr) => {
         #[cfg(test)]
@@ -63,13 +61,13 @@ macro_rules! bench_header(
 macro_rules! deref(
     ($from:ty -> $to:ty) => {
 
-        impl Deref<$to> for $from {
+        impl ::std::ops::Deref<$to> for $from {
             fn deref<'a>(&'a self) -> &'a $to {
                 &self.0
             }
         }
 
-        impl DerefMut<$to> for $from {
+        impl ::std::ops::DerefMut<$to> for $from {
             fn deref_mut<'a>(&'a mut self) -> &'a mut $to {
                 &mut self.0
             }
