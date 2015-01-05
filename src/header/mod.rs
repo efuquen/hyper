@@ -11,7 +11,8 @@ use std::borrow::IntoCow;
 use std::fmt::{mod, Show};
 use std::intrinsics::TypeId;
 use std::raw::TraitObject;
-use std::str::{SendStr, FromStr};
+use std::str::FromStr;
+use std::string::CowString;
 use std::collections::HashMap;
 use std::collections::hash_map::{Iter, Entry};
 use std::iter::FromIterator;
@@ -455,7 +456,7 @@ impl fmt::Show for Box<HeaderFormat + Send + Sync> {
 
 /// Case-insensitive string.
 //#[deriving(Clone)]
-pub struct CaseInsensitive(SendStr);
+pub struct CaseInsensitive(CowString<'static>);
 
 impl FromStr for CaseInsensitive {
     fn from_str(s: &str) -> Option<CaseInsensitive> {

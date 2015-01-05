@@ -1,5 +1,5 @@
 //! A collection of traits abstracting over Listeners and Streams.
-use std::any::{Any, AnyRefExt};
+use std::any::Any;
 use std::boxed::BoxAny;
 use std::fmt;
 use std::intrinsics::TypeId;
@@ -111,27 +111,6 @@ impl UncheckedBoxAnyDowncast for Box<NetworkStream + Send> {
         // Prevent double-free.
         mem::forget(self);
         mem::transmute(to.data)
-    }
-}
-
-impl<'a> AnyRefExt<'a> for &'a (NetworkStream + 'static) {
-    #[inline]
-    fn is<T: 'static>(self) -> bool {
-        self.get_type_id() == TypeId::of::<T>()
-    }
-
-    #[inline]
-    fn downcast_ref<T: 'static>(self) -> Option<&'a T> {
-        if self.is::<T>() {
-            unsafe {
-                // Get the raw representation of the trait object
-                let to: TraitObject = transmute_copy(&self);
-                // Extract the data pointer
-                Some(transmute(to.data))
-            }
-        } else {
-            None
-        }
     }
 }
 

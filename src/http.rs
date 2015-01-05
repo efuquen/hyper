@@ -4,7 +4,8 @@ use std::cmp::min;
 use std::fmt;
 use std::io::{mod, Reader, IoResult, BufWriter};
 use std::num::from_u16;
-use std::str::{mod, SendStr, FromStr};
+use std::str::{mod, FromStr};
+use std::string::CowString;
 
 use url::Url;
 use url::ParseError as UrlError;
@@ -583,7 +584,7 @@ pub type StatusLine = (HttpVersion, RawStatus);
 
 /// The raw status code and reason-phrase.
 #[deriving(PartialEq, Show)]
-pub struct RawStatus(pub u16, pub SendStr);
+pub struct RawStatus(pub u16, pub CowString<'static>);
 
 impl Clone for RawStatus {
     fn clone(&self) -> RawStatus {
