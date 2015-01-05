@@ -61,13 +61,15 @@ macro_rules! bench_header(
 macro_rules! deref(
     ($from:ty -> $to:ty) => {
 
-        impl ::std::ops::Deref<$to> for $from {
+        impl ::std::ops::Deref for $from {
+            type Target = $to;
+
             fn deref<'a>(&'a self) -> &'a $to {
                 &self.0
             }
         }
 
-        impl ::std::ops::DerefMut<$to> for $from {
+        impl ::std::ops::DerefMut for $from {
             fn deref_mut<'a>(&'a mut self) -> &'a mut $to {
                 &mut self.0
             }

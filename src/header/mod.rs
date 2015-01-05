@@ -280,7 +280,9 @@ pub struct HeadersItems<'a> {
     inner: Iter<'a, CaseInsensitive, MuCell<Item>>
 }
 
-impl<'a> Iterator<HeaderView<'a>> for HeadersItems<'a> {
+impl<'a> Iterator for HeadersItems<'a> {
+    type Item = HeaderView<'a>;
+
     fn next(&mut self) -> Option<HeaderView<'a>> {
         match self.inner.next() {
             Some((k, v)) => Some(HeaderView(k, v)),

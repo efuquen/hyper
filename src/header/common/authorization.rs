@@ -8,13 +8,15 @@ use std::ops::{Deref, DerefMut};
 #[deriving(Clone, PartialEq, Show)]
 pub struct Authorization<S: Scheme>(pub S);
 
-impl<S: Scheme> Deref<S> for Authorization<S> {
+impl<S: Scheme> Deref for Authorization<S> {
+    type Target = S;
+
     fn deref<'a>(&'a self) -> &'a S {
         &self.0
     }
 }
 
-impl<S: Scheme> DerefMut<S> for Authorization<S> {
+impl<S: Scheme> DerefMut for Authorization<S> {
     fn deref_mut<'a>(&'a mut self) -> &'a mut S {
         &mut self.0
     }
