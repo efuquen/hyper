@@ -2,6 +2,7 @@ use std::fmt::{mod, Show};
 use std::str::{FromStr, from_utf8};
 use serialize::base64::{ToBase64, FromBase64, Standard, Config, Newline};
 use header::{Header, HeaderFormat};
+use std::ops::{Deref, DerefMut};
 
 /// The `Authorization` header field.
 #[deriving(Clone, PartialEq, Show)]

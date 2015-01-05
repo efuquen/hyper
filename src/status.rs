@@ -1641,11 +1641,11 @@ impl Ord for StatusCode {
     #[inline]
     fn cmp(&self, other: &StatusCode) -> Ordering {
         if *self < *other {
-            Less
+            Ordering::Less
         } else if *self > *other {
-            Greater
+            Ordering::Greater
         } else {
-            Equal
+            Ordering::Equal
         }
     }
 }
