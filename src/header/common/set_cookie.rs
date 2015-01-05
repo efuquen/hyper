@@ -52,7 +52,7 @@ impl HeaderFormat for SetCookie {
     fn fmt_header(&self, f: &mut fmt::Formatter) -> fmt::Result {
         for (i, cookie) in self.0.iter().enumerate() {
             if i != 0 {
-                try!(f.write(b"\r\nSet-Cookie: "));
+                try!(f.write_str("\r\nSet-Cookie: "));
             }
             try!(cookie.fmt(f));
         }

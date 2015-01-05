@@ -81,7 +81,7 @@ impl Header for Etag {
 impl HeaderFormat for Etag {
     fn fmt_header(&self, fmt: &mut fmt::Formatter) -> fmt::Result {
         if self.weak {
-            try!(fmt.write(b"W/"));
+            try!(fmt.write_str("W/"));
         }
         write!(fmt, "\"{}\"", self.tag)
     }
